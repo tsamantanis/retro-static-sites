@@ -28,7 +28,6 @@ _Create your own custom Static Site Generator (like [Jekyll](https://jekyllrb.co
 2. Run each command line-by-line in your terminal to set up the project:
 
 ```bash
-$ cd ~/go/src
 $ git clone git@github.com:Make-School-Labs/makesite.git
 $ cd makesite
 $ git remote rm origin
