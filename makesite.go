@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -17,7 +16,6 @@ type Data struct {
 func main() {
 	filename := flag.String("file", "filename", "name of file to parse")
 	flag.Parse()
-	fmt.Println(*filename)
 	data := loadFileContent(*filename)
 	createHTML(strings.SplitN(*filename, ".", 2)[0], "template.tmpl", data)
 }
