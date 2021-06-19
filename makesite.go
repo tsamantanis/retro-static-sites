@@ -1,10 +1,13 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 )
 
 type Data struct {
@@ -12,8 +15,11 @@ type Data struct {
 }
 
 func main() {
-	data := loadFileContent("first-post.txt")
-	createHTML("first-post", "template.tmpl", data)
+	filename := flag.String("file", "filename", "name of file to parse")
+	flag.Parse()
+	fmt.Println(*filename)
+	data := loadFileContent(*filename)
+	createHTML(strings.SplitN(*filename, ".", 2)[0], "template.tmpl", data)
 }
 
 func loadFileContent(filename string) Data {
