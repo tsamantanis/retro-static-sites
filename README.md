@@ -50,9 +50,9 @@ If you get stuck on any step, be sure to print the output to `stdout`!
 #### v1.0 Requirements
 
 - [x] Edit line `4` of `README.md`. Change this line to the following, replacing `tsamantanis` and `makesite` with your GitHub username and repository name respectively.
-- [ ] Read in the contents of the provided `first-post.txt` file.
-- [ ] Edit the provided HTML template (`template.tmpl`) to display the contents of `first-post.txt`.
-- [ ] Render the contents of `first-post.txt` using Go Templates and print it to stdout.
+- [x] Read in the contents of the provided `first-post.txt` file.
+- [x] Edit the provided HTML template (`template.tmpl`) to display the contents of `first-post.txt`.
+- [x] Render the contents of `first-post.txt` using Go Templates and print it to stdout.
 - [ ] Write the HTML template to the filesystem to a file. Name it `first-post.html`.
 - [ ] Manually test the generated HTML page by running `./makesite`. Double-click the `first-post.html` file that appears in your directory after running the command to open the generated page in your browser.
 - [ ] **Add, commit, and push to GitHub**.
