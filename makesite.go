@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -13,19 +12,25 @@ type Data struct {
 }
 
 func main() {
-	fileContents, err := ioutil.ReadFile("first-post.txt")
+	data := loadFileContent("first-post.txt")
+	createHTML("first-post", "template.tmpl", data)
+}
+
+func loadFileContent(filename string) Data {
+	fileContents, err := ioutil.ReadFile(filename)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Print(string(fileContents))
-	data := Data{string(fileContents)}
+	return Data{string(fileContents)}
+}
 
-	htmlFile, osErr := os.Create("first-post.html")
+func createHTML(filename, templ string, data Data) {
+	htmlFile, osErr := os.Create(filename + ".html")
 	if osErr != nil {
 		log.Fatal(osErr)
 	}
 
-	t := template.Must(template.ParseFiles("template.tmpl"))
+	t := template.Must(template.ParseFiles(templ))
 	execErr := t.Execute(htmlFile, data)
 	if execErr != nil {
 		log.Fatal(execErr)
