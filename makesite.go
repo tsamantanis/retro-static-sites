@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"html/template"
-	"log"
 	"os"
 	"strings"
 )
@@ -32,9 +31,7 @@ func main() {
 
 func loadFileContent(filename string) Data {
 	fileContents, err := os.ReadFile(filename)
-	if err != nil {
-		panic(err)
-	}
+	handleError(err)
 	var dircount string = ""
 	for i := 0; i < len(strings.SplitN(filename, "/", -1)); i++ {
 		dircount = dircount + "../"
@@ -44,29 +41,20 @@ func loadFileContent(filename string) Data {
 
 func createHTML(dir, filename, templ string, data Data) {
 	htmlFile, osErr := os.Create(dir + "/" + filename + ".html")
-	if osErr != nil {
-		log.Fatal(osErr)
-	}
-
+	handleError(osErr)
 	t := template.Must(template.ParseFiles(templ))
 	execErr := t.Execute(htmlFile, data)
-	if execErr != nil {
-		log.Fatal(execErr)
-	}
+	handleError(execErr)
 }
 
 func createManyHTML(directory string) {
 	files, err := os.ReadDir(directory)
-	if err != nil {
-		panic(err)
-	}
+	handleError(err)
 
 	for _, file := range files {
 		path := directory + "/" + file.Name()
 		stat, errStat := os.Stat(path)
-		if errStat != nil {
-			panic(err)
-		}
+		handleError(errStat)
 		if !stat.IsDir() && strings.SplitN(stat.Name(), ".", 2)[1] == "txt" {
 			data := loadFileContent(path)
 			createHTML(directory, strings.SplitN(file.Name(), ".", 2)[0], "template.tmpl", data)
@@ -75,5 +63,11 @@ func createManyHTML(directory string) {
 		} else {
 			fmt.Println("Error: File type does not match .txt")
 		}
+	}
+}
+
+func handleError(err error) {
+	if err != nil {
+		panic(err)
 	}
 }
