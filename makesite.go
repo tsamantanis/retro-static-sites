@@ -25,20 +25,27 @@ func main() {
 	directory := flag.String("dir", "directory", "name of directory of files to parse")
 	flag.Parse()
 
-	var fileNum int16 = 0
-	if *directory != "directory" {
-		fileNum = createManyHTML(*directory)
-	}
-
-	if *filename != "filename" {
-		data := loadFileContent(*filename)
-		fileNum = createHTML("", strings.SplitN(*filename, ".", 2)[0], "template.tmpl", data)
-	}
+	fileNum, size := create(*filename, *directory)
 
 	boldGreen.Print("Success!")
 	fmt.Print(" Generated ")
 	boldWhite.Print(fileNum)
-	fmt.Println(" pages")
+	fmt.Printf(" pages (%.1fkB total)\n", size)
+
+}
+
+func create(filename, directory string) (int16, float64) {
+	var fileNum int16 = 0
+	var size float64 = 0
+	if directory != "directory" {
+		fileNum, size = createManyHTML(directory)
+	}
+
+	if filename != "filename" {
+		data := loadFileContent(filename)
+		fileNum, size = createHTML("", strings.SplitN(filename, ".", 2)[0], "template.tmpl", data)
+	}
+	return fileNum, size
 }
 
 func loadFileContent(filename string) Data {
@@ -51,19 +58,20 @@ func loadFileContent(filename string) Data {
 	return Data{string(fileContents), dircount + "styles.css"}
 }
 
-func createHTML(dir, filename, templ string, data Data) int16 {
+func createHTML(dir, filename, templ string, data Data) (int16, float64) {
 	htmlFile, osErr := os.Create(dir + "/" + filename + ".html")
 	handleError(osErr)
 	t := template.Must(template.ParseFiles(templ))
 	execErr := t.Execute(htmlFile, data)
 	handleError(execErr)
-	return 1
+	return 1, calculateSize(dir + "/" + filename + ".html")
 }
 
-func createManyHTML(directory string) int16 {
+func createManyHTML(directory string) (int16, float64) {
 	files, err := os.ReadDir(directory)
 	handleError(err)
 	var counter int16 = 0
+	var size float64 = 0
 	for _, file := range files {
 		path := directory + "/" + file.Name()
 		stat, errStat := os.Stat(path)
@@ -71,7 +79,9 @@ func createManyHTML(directory string) int16 {
 		if !stat.IsDir() && strings.SplitN(stat.Name(), ".", 2)[1] == "txt" {
 			counter++
 			data := loadFileContent(path)
-			createHTML(directory, strings.SplitN(file.Name(), ".", 2)[0], "template.tmpl", data)
+			c, s := createHTML(directory, strings.SplitN(file.Name(), ".", 2)[0], "template.tmpl", data)
+			counter += c
+			size += s
 		} else if stat.IsDir() {
 			createManyHTML(path)
 		} else {
@@ -81,7 +91,7 @@ func createManyHTML(directory string) int16 {
 			fmt.Println(" does not match type .txt")
 		}
 	}
-	return counter
+	return counter, size
 }
 
 func handleError(err error) {
@@ -90,4 +100,12 @@ func handleError(err error) {
 		fmt.Print(err)
 		panic(err)
 	}
+}
+
+func calculateSize(filename string) float64 {
+	file, errOpen := os.Open(filename)
+	handleError(errOpen)
+	size, errSeek := file.Seek(0, 2)
+	handleError(errSeek)
+	return float64(size) / 1024.0
 }
