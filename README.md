@@ -1,6 +1,6 @@
 # 🔗 makesite
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/YOUR_USERNAME/YOUR_REPONAME)](https://goreportcard.com/report/github.com/YOUR_USERNAME/YOUR_REPONAME)
+[![Go Report Card](https://goreportcard.com/badge/github.com/tsamantanis/makesite)](https://goreportcard.com/report/github.com/tsamantanis/makesite)
 
 _Create your own custom Static Site Generator (like [Jekyll](https://jekyllrb.com/) or [Hugo](https://gohugo.io/)) by cloning and fulfilling the requirements in this repo!_
 
@@ -49,7 +49,7 @@ If you get stuck on any step, be sure to print the output to `stdout`!
 
 #### v1.0 Requirements
 
-- [ ] Edit line `4` of `README.md`. Change this line to the following, replacing `YOUR_USERNAME` and `YOUR_REPONAME` with your GitHub username and repository name respectively.
+- [x] Edit line `4` of `README.md`. Change this line to the following, replacing `tsamantanis` and `makesite` with your GitHub username and repository name respectively.
 - [ ] Read in the contents of the provided `first-post.txt` file.
 - [ ] Edit the provided HTML template (`template.tmpl`) to display the contents of `first-post.txt`.
 - [ ] Render the contents of `first-post.txt` using Go Templates and print it to stdout.
