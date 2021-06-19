@@ -62,7 +62,7 @@ If you get stuck on any step, be sure to print the output to `stdout`!
 
 #### v1.0 Stretch Challenges
 
-- [ ] Use Bootstrap, or another CSS framework, to enhance the style and readability of your template. _Get creative! Writing your very own website generator is a great opportunity to broadcast your style, personality, and development preferences to the world!_
+- [x] Use Bootstrap, or another CSS framework, to enhance the style and readability of your template. _Get creative! Writing your very own website generator is a great opportunity to broadcast your style, personality, and development preferences to the world!_
 
 ### v1.1
 
