@@ -8,10 +8,15 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
+	"github.com/gomarkdown/markdown"
 )
 
 type Data struct {
-	Content    string
+	Content    template.HTML
+	StylesPath string
+}
+
+type MdData struct {
 	StylesPath string
 }
 
@@ -50,12 +55,16 @@ func create(filename, directory string) (int16, float64) {
 
 func loadFileContent(filename string) Data {
 	fileContents, err := os.ReadFile(filename)
+	if strings.SplitN(filename, ".", 2)[1] == "md" {
+		md := []byte(fileContents)
+		fileContents = markdown.ToHTML(md, nil, nil)
+	}
 	handleError(err)
 	var dircount string = ""
 	for i := 0; i < len(strings.SplitN(filename, "/", -1)); i++ {
 		dircount = dircount + "../"
 	}
-	return Data{string(fileContents), dircount + "styles.css"}
+	return Data{template.HTML(fileContents), dircount + "styles.css"}
 }
 
 func createHTML(dir, filename, templ string, data Data) (int16, float64) {
@@ -76,7 +85,7 @@ func createManyHTML(directory string) (int16, float64) {
 		path := directory + "/" + file.Name()
 		stat, errStat := os.Stat(path)
 		handleError(errStat)
-		if !stat.IsDir() && strings.SplitN(stat.Name(), ".", 2)[1] == "txt" {
+		if !stat.IsDir() && (strings.SplitN(stat.Name(), ".", 2)[1] == "txt" || strings.SplitN(stat.Name(), ".", 2)[1] == "md") {
 			counter++
 			data := loadFileContent(path)
 			c, s := createHTML(directory, strings.SplitN(file.Name(), ".", 2)[0], "template.tmpl", data)
@@ -88,7 +97,7 @@ func createManyHTML(directory string) (int16, float64) {
 			boldMagenta.Print("Warning:")
 			fmt.Print(" File ")
 			boldWhite.Print(stat.Name())
-			fmt.Println(" does not match type .txt")
+			fmt.Println(" does not match type .txt or .md")
 		}
 	}
 	return counter, size

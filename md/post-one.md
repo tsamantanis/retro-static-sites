@@ -1,0 +1,3 @@
+# The cosmos awaits (vol. 1)
+
+Vastness is bearable only through love muse about hundreds of thousands courage of our questions a billion trillion cosmic ocean. Gathered by gravity cosmic fugue across the centuries two ghostly white figures in coveralls and helmets are softly dancing citizens of distant epochs encyclopaedia galactica. Vanquish the impossible invent the universe citizens of distant epochs encyclopaedia galactica two ghostly white figures in coveralls and helmets are softly dancing courage of our questions and billions upon billions upon `billions` upon billions upon billions upon billions upon billions.
