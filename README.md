@@ -21,7 +21,7 @@
         ├── first-post.md
         ├── second-post.md
         ├── readme-example.md
-├── retro-static-sites.go
+├── generate.go
 ├── styles.css
 └── template.tmpl
 ```
@@ -40,7 +40,7 @@ $ cd retro-static-sites
 To generate a retro styled static site from a single file use:
 
 ```bash
-$ go run retro-static-sites.go --file=PATH_TO_FILE 
+$ go run generate.go --file=PATH_TO_FILE 
 ```
 
 replacing `PATH_TO_FILE` with the relative path to a `.md` or `.txt` file of your choosing
@@ -49,7 +49,7 @@ replacing `PATH_TO_FILE` with the relative path to a `.md` or `.txt` file of you
 To generate a retro styled static site from a single file use:
 
 ```bash
-$ go run retro-static-sites.go --dir=PATH_TO_DIRECTORY 
+$ go run generate.go --dir=PATH_TO_DIRECTORY 
 ```
 
 replacing `PATH_TO_DIRECTORY` with the relative path to a directory which contains `.md` or `.txt` files. The directory can contain sub-directories.
