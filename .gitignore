@@ -26,5 +26,8 @@
 # End of https://www.gitignore.io/api/go
 
 # Binaries
-makesite
-solution.go
+retro-static-sites
+
+# VSCode
+.VSCode
+.vscode/
