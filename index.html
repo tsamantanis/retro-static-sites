@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href=../styles.css />
+        <meta charset="utf-8">
+        <title>Untitled Custom SSG</title>
+    </head>
+    <body class="container">
+        <div class="content">
+            <h1>📻 Retro Static Sites</h1>
+
+<p><a href="https://goreportcard.com/report/github.com/tsamantanis/retro-static-sites"><img src="https://goreportcard.com/badge/github.com/tsamantanis/retro-static-sites" alt="Go Report Card" /></a></p>
+
+<h3>📚 Table of Contents</h3>
+
+<ol>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+</ol>
+
+<h2>Project Structure</h2>
+
+<pre><code class="language-bash">📂 retro-static-sites
+├── README.md
+├── examples
+    ├── txt-example
+        ├── cosmos-first-post.txt
+        ├── cosmos-second-post.txt
+        ├── cosmos-third-post.txt
+    ├── md-example
+        ├── first-post.md
+        ├── second-post.md
+        ├── readme-example.md
+├── generate.go
+├── styles.css
+└── template.tmpl
+</code></pre>
+
+<h2>Getting Started</h2>
+
+<ol>
+<li>Visit <a href="https://github.com/tsamantanis/retro-static-sites">https://github.com/tsamantanis/retro-static-sites</a> and create a new repository named <code>retro-static-sites</code>.</li>
+<li>Run each command line-by-line in your terminal to set up the project:</li>
+</ol>
+
+<pre><code class="language-bash">$ git clone git@github.com:tsamantanis/retro-static-sites.git
+$ cd retro-static-sites
+</code></pre>
+
+<h3>Single File 📄</h3>
+
+<p>To generate a retro styled static site from a single file use:</p>
+
+<pre><code class="language-bash">$ go run generate.go --file=PATH_TO_FILE 
+</code></pre>
+
+<p>replacing <code>PATH_TO_FILE</code> with the relative path to a <code>.md</code> or <code>.txt</code> file of your choosing</p>
+
+<h3>Folder 📂</h3>
+
+<p>To generate a retro styled static site from a single file use:</p>
+
+<pre><code class="language-bash">$ go run generate.go --dir=PATH_TO_DIRECTORY 
+</code></pre>
+
+<p>replacing <code>PATH_TO_DIRECTORY</code> with the relative path to a directory which contains <code>.md</code> or <code>.txt</code> files. The directory can contain sub-directories.</p>
+
+        </div>
+    </body>
+</html>
