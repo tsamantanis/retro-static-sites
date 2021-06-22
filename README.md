@@ -1,6 +1,6 @@
 # 📻 Retro Static Sites
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/tsamantanis/retro-static-sites)](https://goreportcard.com/report/github.com/tsamantanis/retro-static-sites)
+[![Go Report Card](https://goreportcard.com/badge/github.com/tsamantanis/retro-static-sites)](https://goreportcard.com/report/github.com/tsamantanis/makesite)
 
 ### 📚 Table of Contents
 
