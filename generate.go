@@ -68,12 +68,16 @@ func loadFileContent(filename string) Data {
 }
 
 func createHTML(dir, filename, templ string, data Data) (int16, float64) {
-	htmlFile, osErr := os.Create(dir + "/" + filename + ".html")
+	var path string = ""
+	if dir != "" {
+		path = dir + "/"
+	}
+	htmlFile, osErr := os.Create(path + filename + ".html")
 	handleError(osErr)
 	t := template.Must(template.ParseFiles(templ))
 	execErr := t.Execute(htmlFile, data)
 	handleError(execErr)
-	return 1, calculateSize(dir + "/" + filename + ".html")
+	return 1, calculateSize(path + filename + ".html")
 }
 
 func createManyHTML(directory string) (int16, float64) {
