@@ -25,3 +25,7 @@ html {
     border: 7px double #000;
     padding: 2rem;
 }
+
+code, a, button, h1, h2, h3, h4, h5, h6, span, p {
+    font-family: 'VT323', monospace;
+}
