@@ -6,6 +6,7 @@
 
 1. [Project Structure](#project-structure)
 2. [Getting Started](#getting-started)
+3. [Live Example](#live-example)
 
 ## Project Structure
 
@@ -53,3 +54,7 @@ $ go run generate.go --dir=PATH_TO_DIRECTORY
 ```
 
 replacing `PATH_TO_DIRECTORY` with the relative path to a directory which contains `.md` or `.txt` files. The directory can contain sub-directories.
+
+## Live Example
+
+You can view a live example of this readme file generated using this static site generator [here](https://tsamantanis.github.io/retro-static-sites/)
